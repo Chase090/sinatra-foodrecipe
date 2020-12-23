@@ -1,6 +1,7 @@
-class CreateRecipe < ActiveRecord::Migration
+class CreateRecipes < ActiveRecord::Migration
   def change
     create_table :recipes do |t|
+      t.string :title
       t.string :content
       t.integer :user_id
       # * this is the foreign key
