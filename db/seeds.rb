@@ -1,10 +1,10 @@
 # ^ Create users
 
 
-spongebob = User.create(name: "Spongebob", email: "Spongebob@bikinibottom.com", password: "gary")
-souma = User.create(name: "Souma Ykihira", email: "Souma@foodwars.com", password: "food")
-teuchi = User.create(name: "Teuchi", email: "ichiraku@hiddenleaf.com", password: "ramen")
-gordon = User.create(name: "Gordon Ramsey", email: "Gordon@ramsey.com", password: "iwannapeewhenispeak")
+spongebob = User.create(name: "Spongebob", email: "spongebob@recipe.com", password: "password")
+souma = User.create(name: "Souma Ykihira", email: "souma@recipe.com", password: "password")
+teuchi = User.create(name: "Teuchi", email: "ichiraku@recipe.com", password: "password")
+gordon = User.create(name: "Gordon Ramsey", email: "gordon@recipe.com", password: "password")
 # User.create(name: "Guy Fieri", email: "cooldude@comfortfood.com", password: "mustang")
 
 # ^ Create recipe(btw dont forget the foreign key)

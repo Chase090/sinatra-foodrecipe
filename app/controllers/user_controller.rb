@@ -26,7 +26,8 @@ class UserContoller < ApplicationController
 
     end
 
-    get '/users/:id' do 
+    # * this is the user landing page
+    get '/users/:id' do
         "show me somethin"
     end
 

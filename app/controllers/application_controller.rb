@@ -13,4 +13,15 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  helpers do 
+    def logged_in?
+      !!current_user
+    end
+
+    def current_user
+     @current_user ||= User.find_by(id: session[:user_id])
+    #  * this instance variable would be created and assigned if user is found else it will be nil
+    end
+  end
+
 end
