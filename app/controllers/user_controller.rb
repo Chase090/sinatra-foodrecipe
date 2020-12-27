@@ -13,8 +13,7 @@ class UserContoller < ApplicationController
             # log user in - create the user session
             session[:user_id] = @user.id
             # redirect to users landing page
-            puts session
-            redirect "users/#{@user.id}"
+            redirect "/users/#{@user.id}"
         else
         # tell the user invalid, then redirect to login page
         end
@@ -23,12 +22,34 @@ class UserContoller < ApplicationController
     end
 # *
     get '/signup' do 
-
+        erb :signup
+       
     end
+
+    post '/users' do 
+        # ! if the user email pass is NOT equal to an empty string
+        if params[:name] != "" && params[:email] != "" && params[:password] != ""
+            @user = User.create(params)
+            session[:user_id] = @user.id
+            redirect "users/#{@user.id}"
+        else
+            redirect '/signup '
+        end
+    end
+
+
 
     # * this is the user landing page
     get '/users/:id' do
-        "show me somethin"
+        @user = User.find_by(id: params[:id])
+        # * create and instance variable, retrieve that user from the DB
+        erb :'user/show'
     end
+
+    get '/logout' do
+        session.clear 
+        redirect '/'
+    end
+
 
 end
