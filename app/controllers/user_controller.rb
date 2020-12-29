@@ -32,7 +32,7 @@ class UserContoller < ApplicationController
             session[:user_id] = @user.id
             redirect "users/#{@user.id}"
         else
-            redirect '/signup '
+            redirect '/signup'
         end
     end
 
