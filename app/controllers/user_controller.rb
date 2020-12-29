@@ -10,20 +10,19 @@ class UserContoller < ApplicationController
         @user = User.find_by(email: params[:email])
     # authenticate
         if @user.authenticate(params[:password])
+            # * undefined method for nil:NilClass
+            # * means you invoked method on nil or in this case a user who does not exist
             # log user in - create the user session
             session[:user_id] = @user.id
             # redirect to users landing page
             redirect "/users/#{@user.id}"
         else
-        # tell the user invalid, then redirect to login page
+            erb :login
         end
-    # log in
-    
     end
 # *
     get '/signup' do 
-        erb :signup
-       
+        erb :signup      
     end
 
     post '/users' do 
