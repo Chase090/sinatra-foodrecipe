@@ -6,11 +6,13 @@
 <h3>Directions</h3>
 <p><%=@recipe_entry.directions%></p>
 <br>
+<h6>Created by:</h6>
 <p><%=@recipe_entry.user.name%></p>
 <br>
-<form action="/recipes/<%@recipe_entry.id%>/edit">
-    <input type="submit" value="Edit">
-</form>
+<a href="/recipes/<%=@recipe_entry.id%>/edit">
+   <input type="button" value="Edit"/>
+</a>
+<br>
 or
 <br>
 <form action="/recipes/new">
