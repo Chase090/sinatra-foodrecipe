@@ -1,1 +1,24 @@
-show page recipe
+<h1><%=@recipe_entry.title%></h1>
+<br>
+<h3>Ingredients</h3>
+<p><%=@recipe_entry.ingredients%></p>
+<br>
+<h3>Directions</h3>
+<p><%=@recipe_entry.directions%></p>
+<br>
+<p><%=@recipe_entry.user.name%></p>
+<br>
+<form action="/recipes/<%@recipe_entry.id%>/edit">
+    <input type="submit" value="Edit">
+</form>
+or
+<br>
+<form action="/recipes/new">
+    <input type="submit" value="Create another Recipe"/>
+</form>
+
+
+
+
+
+
