@@ -24,10 +24,16 @@ class RecipeController < ApplicationController
     end
     
     # show route for a recipe entry
-    get '/recipe' do 
-
+    get '/recipes/:id' do 
+        # * btw dynamic becomes a key value pair
+        @recipe_entry = Recipe.find(params[:id])
+        erb :"/recipe/show"
     end
     
+    get '/recipes/:id/edit' do
+       erb :"/recipe/edit"
+    end
+
     # index route for all entries
     get '/index' do 
         
