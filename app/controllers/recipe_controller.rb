@@ -27,12 +27,32 @@ class RecipeController < ApplicationController
     get '/recipes/:id' do 
         # * btw dynamic becomes a key value pair
         @recipe_entry = Recipe.find(params[:id])
-        erb :"/recipe/show"
+        if logged_in?
+            if @recipe_entry.user == current_user
+                erb :"/recipe/show"
+            else
+                erb :"/user/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end
     end
     
     get '/recipes/:id/edit' do
+       @recipe_entry = Recipe.find(params[:id])
        erb :"/recipe/edit"
     end
+
+    patch '/recipes/:id/edit' do
+        @recipe_entry = Recipe.find(params[:id])
+        # @recipe_entry.update(params) #* <<-- this mass assignment wont work. 
+        # *because the _method params does not exist as an attribute in the database 
+        @recipe_entry.update(title: params[:title], 
+            ingredients: params[:ingredients], 
+            directions: params[:directions])
+
+        redirect :"/recipes/#{@recipe_entry.id}" 
+      end
 
     # index route for all entries
     get '/index' do 
