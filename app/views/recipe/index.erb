@@ -1,1 +1,6 @@
-index recipe
+<%@recipe_entries.each do |recipe|%>
+   <h4> <a href="/recipes/<%=recipe.id%>"> <%=recipe.title%></a></h4>
+    <br>
+    <p>By. <%=recipe.user.name%></p>
+   
+<%end%>
