@@ -28,4 +28,8 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  def authorized_to_access?(recipe_entry)
+    recipe_entry.user == current_user
+  end
+
 end
