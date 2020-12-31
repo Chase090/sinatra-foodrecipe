@@ -21,15 +21,22 @@
         </form>
       </div>
       
-      <div class="nav" style="float:right">
-        <form action="/logout">
+      <div class="nav" >
+        <form action="/logout" style="float:right">
           <input type="submit" value="LogOut">
           </label>
         </form>
       </div>
 
-      
-      
+       <a href="/users/<%=current_user.id%>">
+        <input type="button" value="Home"/>
+      </a>
+
+      <br>
+
+      <a href="/recipe_list">
+        <input type="button" value="Recipes"/>
+      </a>  
       
       <div class="wrapper">
 
