@@ -1,4 +1,9 @@
 
+<form action="/recipes/<%=@recipe_entry.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Recipe" style="float:right">
+</form>
+<br>
 <form action="/recipes/<%=@recipe_entry.id%>/edit" method="post">
     <br>
   <input type="hidden" name="_method" value="patch">
@@ -14,3 +19,5 @@
   <br>
   <input type="submit" name="" value="submit">
 </form> 
+<br>
+<br>
