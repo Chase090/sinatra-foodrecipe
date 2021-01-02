@@ -36,13 +36,25 @@ class UserContoller < ApplicationController
         end
     end
 
+    get '/user_recipe/:id' do
+        @user = User.find_by(id: params[:id])
+      @recipes = []
 
+      Recipe.all.each do |r|
+          if r.user_id == @user.id
+              @recipes << r 
+          end
+      end
+      erb :"recipe/list"
+    end
 
     # * this is the user landing page
     get '/users/:id' do
         @user = User.find_by(id: params[:id])
         # * create and instance variable, retrieve that user from the DB
+
         erb :'user/show'
+      
     end
 
     get '/logout' do
