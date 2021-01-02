@@ -28,20 +28,18 @@ class RecipeController < ApplicationController
         erb :"recipe/index"
     end
 
+    
+    get '/user_recipe/:id' do
+        @user = User.find_by(id: params[:id])
+      @recipes = []
 
-    # get '/recipes/:id' do 
-    #     # * btw dynamic becomes a key value pair
-    #     set_recipe_entry
-    #     if logged_in?
-    #         if @recipe_entry.user == current_user
-    #             erb :"/recipe/show"
-    #         else
-    #             erb :"/user/#{current_user.id}"
-    #         end
-    #     else
-    #         redirect '/'
-    #     end
-    # end
+      Recipe.all.each do |r|
+          if r.user_id == @user.id
+              @recipes << r 
+          end
+      end
+      erb :"recipe/list"
+    end
 
     # show route for a recipe entry
     get '/recipes/:id' do 
@@ -54,11 +52,12 @@ class RecipeController < ApplicationController
         @recipe_entry = Recipe.find(params[:id])
         erb :"/recipe/edit"
     end
+
     
     patch '/recipes/:id/edit' do
         set_recipe_entry
         if logged_in?
-            if @recipe_entry.user == current_user
+            if @recipe_entry.user == current_user && params[:title] != "" && params[:ingredients] != "" && params[:directions] != ""
                 # @recipe_entry.update(params) #* <<-- this mass assignment wont work. 
                 # *because the _method params does not exist as an attribute in the database 
                 @recipe_entry.update(title: params[:title], 
@@ -73,10 +72,18 @@ class RecipeController < ApplicationController
         end
       end
 
-    # index route for all entries
-    get '/index' do 
-        
+    delete '/recipes/:id' do
+        set_recipe_entry
+        if authorized_to_access?(@recipe_entry)
+            @recipe_entry.destroy
+            redirect :"/users/#{current_user.id}"
+        else
+            redirect :"/users/#{current_user.id}"
+        end
     end
+ 
+        
+
 
     def set_recipe_entry
         @recipe_entry = Recipe.find(params[:id]) 
