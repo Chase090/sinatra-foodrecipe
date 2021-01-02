@@ -1,8 +1,15 @@
 <h2><%=@user.name%>'s Page</h2>
 <%=@user.email%>
 <br>
+<br>
+
+
+<a href="/user_recipe/<%=current_user.id%>">
+   <input type="button" value="Your Recipes"/>
+</a>  
+
+<br>
 
 <a href="/recipe_list">
-        <input type="button" value="All available recipes"/>
-      </a>  
-
+   <input type="button" value="All available recipes"/>
+</a>  
