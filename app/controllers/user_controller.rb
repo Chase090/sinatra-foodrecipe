@@ -1,6 +1,6 @@
 class UserContoller < ApplicationController
 
-# * routes for login, reder login page
+# * route for login, render login page
     get '/login' do 
         erb :login
     end
@@ -10,9 +10,6 @@ class UserContoller < ApplicationController
         @user = User.find_by(email: params[:email])
     # authenticate
         if @user.authenticate(params[:password])
-            # * undefined method for nil:NilClass
-            # * means you invoked method on nil or in this case a user who does not exist
-            # log user in - create the user session
             session[:user_id] = @user.id
             # redirect to users landing page
             redirect "/users/#{@user.id}"
@@ -20,7 +17,7 @@ class UserContoller < ApplicationController
             erb :login
         end
     end
-# *
+    
     get '/signup' do 
         erb :signup      
     end
