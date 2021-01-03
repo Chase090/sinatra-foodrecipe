@@ -22,7 +22,7 @@
   }
 
   .wrapper {
-    background: linear-gradient(180deg,  rgb(103, 103, 117),  transparent, rgb(103, 103, 117));
+    background: radial-gradient(rgb(255, 255, 255), rgb(129, 129, 129));
     
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
