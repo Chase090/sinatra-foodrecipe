@@ -24,12 +24,12 @@ class ApplicationController < Sinatra::Base
 
     def current_user
      @current_user ||= User.find_by(id: session[:user_id])
-    #  * this instance variable would be created and assigned if user is found else it will be nil
     end
-  end
+  
 
-  def authorized_to_access?(recipe_entry)
-    recipe_entry.user == current_user
+    def authorized_to_access?(recipe_entry)
+      recipe_entry.user == current_user
+    end
+  
   end
-
 end
